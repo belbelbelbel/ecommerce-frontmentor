@@ -1,9 +1,14 @@
 import React, { useState } from 'react'
 import "../Styles/Women.css"
+import { imgArray } from './Images'
 import { Images } from './Images'
-export const Women = () => {
+export const Women = ({handleaddToCart,warning,setwarning, handleRemoveFromCart}) => {
+  const [ShowText, setShowText] = useState(false)
   const [price,setprice] = useState(0)
-  const [warning,setwarning] = useState(false)
+
+    const handleTogleText = () => {
+      setShowText(!ShowText)
+    }
 const addbutton =()=> {
   setprice(price + 1)
 }
@@ -12,9 +17,9 @@ const subbutton =()=> {
   setprice(price - 1);
  }
 }
+
   return (
     <div className='container_women'>
-      
       <Images />
       <div className='container_women3'>
         <div className='container_women3a'>
@@ -39,7 +44,11 @@ const subbutton =()=> {
                 <div className='conti'>
                   <img src="icon-cart.svg" alt="hhgmhkj" />
                 </div>
-                <div>Add to cart</div>
+                <div onClick={handleTogleText} className=''>
+                  {
+                    !ShowText ? <div onClick={() => handleaddToCart(imgArray)}>Add to Cart</div> : <div onClick={() => handleRemoveFromCart()}>Remove From Cart</div>
+                  }
+                </div>
               </div>
             </button>
           </div>
